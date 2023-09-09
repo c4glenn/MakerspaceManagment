@@ -1,6 +1,9 @@
+from __future__ import annotations
 import sqlite3
 import os
 import dataclasses
+
+SCHEMA_VERSION = 1
 
 @dataclasses.dataclass()
 class User:
@@ -10,22 +13,35 @@ class User:
     want_to_go_to_comp: bool
     class_status: str
     agab: str
-    expected_grad: int
+    expected_grad: str
     email: str
-    attendance_num: int
-    volunteer_num: float
-    
-    def calc_travel_score(self, volunteer_cutoff: float) -> float:
-        volunteer = min(self.volunteer_num, volunteer_cutoff)
-        vterm = (10*volunteer)/(volunteer + 10)
-        return (vterm/7)*self.attendance_num + (self.attendance_num / 2)
     
     def get_name(self) -> str:
         return f"{self.fname} {self.lname}"
     
 
 class Users:
-    pass
+    def __init__(self) -> None:
+        self.SCHEMA_VERSION = SCHEMA_VERSION
+    
+    def create_table(self, db_connection: sqlite3.Connection) -> None:
+        db_connection.execute("""
+        CREATE TABLE Users(
+            id INTEGER PRIMARY KEY,
+            displayName TEXT,
+            firstName TEXT,
+            lastName TEXT,
+            email TEXT,
+            wantToGoToComp BOOL,
+            classStanding TEXT,
+            expectedGrad TEXT,
+            agab TEXT
+        )""")
+        
+    
+    
+        
+        
     
 
 if __name__ == "__main__":
