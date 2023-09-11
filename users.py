@@ -64,7 +64,7 @@ if __name__ == "__main__":
     users = Users()
     
     testUser = User(800000000, "philip", "smith", True, "sophmore", "Male", "Spring 2025", "psmit145@uncc.edu")
-    
+    testUser2 = User(800000001, "Tano", "edwards", True, "junior", "Male", "2025", "testemail@gmail.com")
     with sqlite3.connect(DEFAULT_PATH) as connection:
         try: 
             users.create_table(connection)
@@ -72,7 +72,6 @@ if __name__ == "__main__":
             connection.execute("DROP TABLE users")
             users.create_table(connection)
         users.add_user(connection, testUser)
+        users.add_user(connection, testUser2)
         print(users.get_user_by_ID(connection, 800000000))
         print(users.get_all_users(connection))
-    
-    
