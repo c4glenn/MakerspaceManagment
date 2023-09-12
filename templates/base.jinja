@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+
+    {# Boot strap #}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    
+    
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}" />
+
+
+    <title>{% block title %}{% endblock %} - Super Fab Lab</title>
+
+    {% endblock %}
+</head>
+<body>
+    <div id="header" class="text-center"><img src={{url_for('static', filename='images/logo.png')}} width=80%%>{%block header%}{% endblock %}</div>
+    <div id="content">{% block content %}{% endblock %}</div>
+    {# <div id="footer">
+        {% block footer %}
+        &copy; Copyright 2023 by <a href="http://github.com/c4glenn/">Philip Smith</a>.
+        {% endblock %}
+    </div> #}
+</body>
+</html>
